@@ -1,8 +1,22 @@
-# Development of an open data portal website
+# IS Project
 
-This project will be an open data platform that will be designed using express as the back-end technology and react as the front-end technology.
+## Description
 
-## Author
+This is a webapp that acts as a holistic platform that combines tools for networking and cooperation, skills assessment and development, and job matching.
 
-This project is created by Lewis Muchoki.
+## Known Bugs
 
+There are no known bugs.
+
+## Technologies Used
+
+This project is mde by the use of HTML, CSS, JavaScript and PHP.
+
+## Support and contact details
+
+In case you wish to contact me, send me an email, That is princemumo80@gmail.com
+
+### LICENSE
+
+This work is under the MIT license.
+Copyright (c) {2023} **{Prince Mumo}**
