@@ -17,7 +17,7 @@ const Approval = ({ setActive }) => {
       const first = query(
         DataRef,
         where("approved", "==", false),
-        where("role", "==", "publisher")
+        where("role", "!=", "admin")
       );
       const docSnapshot = await getDocs(first);
       setDatas(docSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
@@ -28,6 +28,10 @@ const Approval = ({ setActive }) => {
     setActive("approval");
   }, []);
 
+  const containerStyle = {
+    marginLeft: "20px",
+  };
+
   if (loading) {
     return <Spinner />;
   }
@@ -35,9 +39,12 @@ const Approval = ({ setActive }) => {
   return (
     <div>
       <div className="col-12">
-        <div className="text-center heading py-2">Approvals</div>
+        <div className="text-center heading py-2">Account Approvals</div>
       </div>
-      <div className="col-md-12 text-left justify-content-center">
+      <div
+        className="col-md-12 text-left justify-content-center"
+        style={containerStyle}
+      >
         <div className="row gx-5">
           {Datas.length === 0 && (
             <h5 className="text-center">
@@ -46,7 +53,7 @@ const Approval = ({ setActive }) => {
             </h5>
           )}
           {Datas?.map((item) => (
-            <UserCard {...item} name={item.username} id={item.id} />
+            <UserCard {...item} name={item.fullName} id={item.id} />
           ))}
         </div>
       </div>

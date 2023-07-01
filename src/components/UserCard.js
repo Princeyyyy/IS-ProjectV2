@@ -5,23 +5,23 @@ import { toast } from "react-toastify";
 
 const UserCard = ({ name, id }) => {
   const approveButtonStyle = {
-    borderRadius: "20px", 
-    backgroundColor: "#00FF00", 
-    color: "#000000", 
-    padding: "10px 20px", 
-    marginRight: "20px", 
-    border: "none", 
-    fontWeight: "bold", 
+    borderRadius: "20px",
+    backgroundColor: "#00FF00",
+    color: "#000000",
+    padding: "10px 20px",
+    marginRight: "20px",
+    border: "none",
+    fontWeight: "bold",
   };
 
   const declineButtonStyle = {
-    borderRadius: "20px", 
-    backgroundColor: "#FF0000", 
-    color: "#fff", 
-    padding: "10px 20px", 
-    marginRight: "20px", 
+    borderRadius: "20px",
+    backgroundColor: "#FF0000",
+    color: "#fff",
+    padding: "10px 20px",
+    marginRight: "20px",
     border: "none",
-    fontWeight: "bold", 
+    fontWeight: "bold",
   };
 
   const containerStyle = {
@@ -38,7 +38,7 @@ const UserCard = ({ name, id }) => {
         approved: isApproved,
       });
 
-      toast.success("User request has been approved!");
+      toast.success("User has been approved!");
     } else {
       console.log("Account has been rejected.");
 
@@ -46,12 +46,12 @@ const UserCard = ({ name, id }) => {
         approved: isApproved,
       });
 
-      toast.error("User request has been rejected!");
+      toast.error("User has been rejected!");
     }
 
     setTimeout(() => {
       window.location.reload(false);
-    }, 1000);
+    }, 2000);
   };
 
   return (

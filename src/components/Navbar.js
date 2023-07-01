@@ -27,7 +27,7 @@ const Navbar = ({ active, setActive, user, handleLogout }) => {
         const userDocRef = doc(db, "users", userId);
         const userDocSnapshot = await getDoc(userDocRef);
 
-        setUsername(userDocSnapshot.data().username);
+        setUsername(userDocSnapshot.data().fullName);
 
         // Check state of the user
         if (userDocSnapshot.data().role === "consumer") {

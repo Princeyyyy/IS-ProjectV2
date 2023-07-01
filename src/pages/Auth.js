@@ -10,11 +10,11 @@ import { useNavigate } from "react-router-dom";
 import { setDoc, doc } from "firebase/firestore";
 
 const initialState = {
-  userName: "",
+  fullName: "",
   email: "",
   password: "",
   confirmPassword: "",
-  role: "consumer",
+  role: "recruitee",
 };
 
 const Auth = ({ setActive, setUser }) => {
@@ -25,7 +25,7 @@ const Auth = ({ setActive, setUser }) => {
   const [signInText, setsignInText] = useState("Sign In");
   const [isDisabled, setIsDisabled] = useState(false);
 
-  const { email, password, userName, confirmPassword, role } = state;
+  const { email, password, fullName, confirmPassword, role } = state;
 
   const navigate = useNavigate();
 
@@ -55,7 +55,7 @@ const Auth = ({ setActive, setUser }) => {
           setActive("home");
 
           //Navigate and toast
-          toast.success("Welcome to the Open Data Portal");
+          toast.success("Welcome to SkillConnect");
           navigate("/");
         } catch (error) {
           // Catch and console log Firebase authentication errors
@@ -71,7 +71,7 @@ const Auth = ({ setActive, setUser }) => {
       if (password !== confirmPassword) {
         return toast.error("Password don't match");
       }
-      if (userName && email && password) {
+      if (fullName && email && password) {
         setsignUpText("Creating your account...");
         setIsDisabled(true);
 
@@ -86,7 +86,7 @@ const Auth = ({ setActive, setUser }) => {
           // Save the user's details to a new document with their user ID as the document ID
           await setDoc(doc(db, "users", user.uid), {
             id: user.uid,
-            username: userName,
+            fullName: fullName,
             email: email,
             role: role,
             approved: false,
@@ -96,7 +96,7 @@ const Auth = ({ setActive, setUser }) => {
           setActive("home");
 
           //Navigate and toast
-          toast.success("Welcome to the Open Data Portal");
+          toast.success("Welcome to SkillConnect");
           navigate("/");
         } catch (error) {
           // Catch and console log Firebase authentication errors
@@ -106,7 +106,7 @@ const Auth = ({ setActive, setUser }) => {
           console.error("Sign Up error:", error);
         }
       } else {
-        return toast.error("All fields are mandatory to fill");
+        return toast.error("All fields are mandatory to fill/check");
       }
     }
   };
@@ -116,7 +116,7 @@ const Auth = ({ setActive, setUser }) => {
       <div className="container">
         <div className="col-12 text-center">
           <div className="text-center heading py-2">
-            {!signUp ? "Sign-In" : "Sign-Up"}
+            {!signUp ? "Sign-In" : "Create an Account"}
           </div>
         </div>
         <div className="row h-100 justify-content-center align-items-center">
@@ -128,21 +128,21 @@ const Auth = ({ setActive, setUser }) => {
                     <input
                       type="text"
                       className="form-control input-text-box"
-                      placeholder="Username"
-                      name="userName"
-                      value={userName}
+                      placeholder="Full Name"
+                      name="fullName"
+                      value={fullName}
                       onChange={handleChange}
                     />
                   </div>
                   <div className="col-12 py-3">
-                    <p className="role">Do you wish to be a publisher?</p>
+                    <p className="role">Are you a recruiter?</p>
                     <div className="form-check-inline mx-2">
                       <input
                         type="radio"
                         className="form-check-input"
-                        value="publisher"
+                        value="recruiter"
                         name="radioOption"
-                        checked={role === "publisher"}
+                        checked={role === "recruiter"}
                         onChange={handlerole}
                       />
                       <label htmlFor="radioOption" className="form-check-label">
@@ -151,9 +151,9 @@ const Auth = ({ setActive, setUser }) => {
                       <input
                         type="radio"
                         className="form-check-input"
-                        value="normal"
+                        value="recruitee"
                         name="radioOption"
-                        checked={role === "consumer"}
+                        checked={role === "recruitee"}
                         onChange={handlerole}
                       />
                       <label htmlFor="radioOption" className="form-check-label">
@@ -214,7 +214,11 @@ const Auth = ({ setActive, setUser }) => {
                       Don't have an account ?&nbsp;
                       <span
                         className="link-danger"
-                        style={{ textDecoration: "none", cursor: "pointer" }}
+                        style={{
+                          textDecoration: "none",
+                          cursor: "pointer",
+                          color: "#ff5722",
+                        }}
                         onClick={() => setSignUp(true)}
                       >
                         Sign Up
@@ -231,7 +235,7 @@ const Auth = ({ setActive, setUser }) => {
                         style={{
                           textDecoration: "none",
                           cursor: "pointer",
-                          color: "#003566",
+                          color: "#0068ca",
                         }}
                         onClick={() => setSignUp(false)}
                       >

@@ -1,4 +1,4 @@
-$yellow: #FED60A;
+$yellow: #fed60a;
 
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
@@ -49,7 +49,7 @@ $yellow: #FED60A;
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #003566;
+  background-color: #0068ca;
   color: #fff;
 }
 
@@ -125,7 +125,7 @@ $yellow: #FED60A;
 }
 
 .btn-sign-in {
-  background: #FF5722 !important;
+  background: #ff5722 !important;
   @include border-radius(0!important);
   color: #fff !important;
   padding: 10px 50px !important;
@@ -133,7 +133,7 @@ $yellow: #FED60A;
 }
 
 .btn-sign-up {
-  background: #003566 !important;
+  background: #0068ca !important;
   @include border-radius(0!important);
   color: #fff !important;
   padding: 10px 50px !important;
@@ -153,7 +153,7 @@ $yellow: #FED60A;
 }
 
 .btn-add {
-  background: #003566 !important;
+  background: #0068ca !important;
   @include border-radius(0!important);
   color: #fff !important;
   padding: 10px 50px !important;
@@ -171,7 +171,7 @@ $yellow: #FED60A;
   width: 100%;
   border-radius: 4px;
   height: 45px;
-  color: #001D3D;
+  color: #001d3d;
 }
 
 .catg-dropdown:focus {
@@ -181,7 +181,7 @@ $yellow: #FED60A;
 
 .trending {
   float: left;
-  color: #001D3D;
+  color: #001d3d;
   font-size: 18px;
   margin: auto;
 }
@@ -190,7 +190,7 @@ $yellow: #FED60A;
 
 .Data-heading {
   font-size: 24px;
-  color: #001D3D;
+  color: #001d3d;
   border-bottom: 1px solid #777;
 }
 
@@ -226,7 +226,7 @@ $yellow: #FED60A;
 .category {
   display: inline-block;
   position: relative;
-  background-color: #003566;
+  background-color: #0068ca;
   padding: 4px 8px;
   color: #fff;
   text-decoration: none;
@@ -238,11 +238,11 @@ $yellow: #FED60A;
 }
 
 .fa-trash {
-  color: #FF5722 !important;
+  color: #ff5722 !important;
 }
 
 .fa-edit {
-  color: #FF5722!important;
+  color: #ff5722 !important;
 }
 
 .meta-info {
@@ -255,7 +255,7 @@ $yellow: #FED60A;
 
 .Data-single-content .meta-info {
   margin-top: 8px;
-  border-bottom: 1px solid #001D3D;
+  border-bottom: 1px solid #001d3d;
   margin-bottom: 15px;
 }
 
@@ -267,11 +267,11 @@ $yellow: #FED60A;
 
 .short-description {
   font-size: 14px;
-  color: #001D3D;
+  color: #001d3d;
 }
 
 .btn-read {
-  background: #001D3D!important;
+  background: #001d3d !important;
   @include border-radius(0!important);
   color: #fff !important;
   padding: 5px 10px !important;
@@ -327,7 +327,7 @@ $yellow: #FED60A;
 
     > span {
       display: block;
-      color: #001D3D;
+      color: #001d3d;
       text-transform: uppercase;
       font-size: 15px;
       letter-spacing: 0.05em;
@@ -395,7 +395,7 @@ $yellow: #FED60A;
 
 .most-popular-font-meta {
   font-size: 12px;
-  color: #001D3D;
+  color: #001d3d;
 }
 
 // Trending
@@ -452,7 +452,7 @@ $yellow: #FED60A;
 }
 
 .trending-meta-info {
-  color: #001D3D;
+  color: #001d3d;
   font-size: 13px;
 }
 
@@ -602,7 +602,7 @@ $yellow: #FED60A;
 
 .comments-list .media-right,
 .comments-list small {
-  color: #001D3D !important;
+  color: #001d3d !important;
   font-size: 11px;
   letter-spacing: 2px;
   margin-top: 5px;
@@ -655,8 +655,8 @@ $yellow: #FED60A;
   text-align: center;
   top: -18px;
   color: #ffffff !important;
-  background-color: #003566 !important;
-  border-color: #003566 !important;
+  background-color: #0068ca !important;
+  border-color: #0068ca !important;
 }
 
 .user_name {
@@ -666,7 +666,7 @@ $yellow: #FED60A;
 
 // Pagination
 .btn_mange_pagging {
-  background: #FF5722;
+  background: #ff5722;
   padding: 12px 20px;
   color: #000814 !important;
   font-weight: 800;
@@ -693,7 +693,7 @@ $yellow: #FED60A;
 
 .btn_pagging:hover,
 .btn_pagging:focus {
-  background: #FF5722 !important;
+  background: #ff5722 !important;
   color: #fff;
 }
 
@@ -725,7 +725,7 @@ $yellow: #FED60A;
 }
 
 .search-btn {
-  background-color: #FED60A;
+  background-color: #fed60a;
   border: none;
   padding: 8px 12px;
   margin-left: 5px;
@@ -741,7 +741,7 @@ $yellow: #FED60A;
 .search-filter-dropdown {
   width: 100%;
   border-radius: 4px;
-  border: 1px solid #001D3D;
+  border: 1px solid #001d3d;
   padding: 6px 12px;
   font-size: 14px;
   margin-bottom: 10px;
