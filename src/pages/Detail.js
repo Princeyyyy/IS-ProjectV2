@@ -61,8 +61,8 @@ const Detail = ({ setActive, user }) => {
 
   const getDataDetail = async () => {
     setLoading(true);
-    const DataRef = collection(db, "Datas");
-    const docRef = doc(db, "Datas", id);
+    const DataRef = collection(db, "Jobs");
+    const docRef = doc(db, "Jobs", id);
     const DataDetail = await getDoc(docRef);
     const Datas = await getDocs(DataRef);
     let tags = [];
@@ -99,7 +99,7 @@ const Detail = ({ setActive, user }) => {
         body: userComment,
       });
 
-      await updateDoc(doc(db, "Datas", id), {
+      await updateDoc(doc(db, "Jobs", id), {
         ...Data,
         comments,
         timestamp: serverTimestamp(),
@@ -123,7 +123,7 @@ const Detail = ({ setActive, user }) => {
           setLikes(likes);
         }
       }
-      await updateDoc(doc(db, "Datas", id), {
+      await updateDoc(doc(db, "Jobs", id), {
         ...Data,
         likes,
         timestamp: serverTimestamp(),

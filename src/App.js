@@ -83,7 +83,7 @@ function App() {
             )
           }
         />
-        <Route path="/Data" element={<Data setActive={setActive} />} />
+        <Route path="/Jobs" element={<Data setActive={setActive} />} />
         <Route path="/tag/:tag" element={<TagData setActive={setActive} />} />
         <Route
           path="/category/:category"

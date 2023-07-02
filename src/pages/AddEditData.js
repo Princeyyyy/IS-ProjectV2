@@ -17,42 +17,40 @@ import { toast } from "react-toastify";
 const initialState = {
   title: "",
   tags: [],
-  trending: "no",
   category: "",
   description: "",
   comments: [],
   likes: [],
   imgUrl:
-    "https://firebasestorage.googleapis.com/v0/b/open-data-platform-1758c.appspot.com/o/wp2659176-art-wallpaper.jpg?alt=media&token=63b5fa2a-8df4-4fcc-b0b3-e52213510a3e",
+    "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/wp2659176-art-wallpaper.jpg?alt=media&token=324f048a-9b3a-4156-aa11-0182071bdc0b",
 };
 
 const categoryOption = [
-  "Transport and streets",
-  "Health and social care",
-  "Geography and areas",
-  "Council",
-  "Environment",
-  "Community",
-  "Planning",
-  "Energy",
-  "Leisure and tourism",
-  "Business",
+  "Administrative and office",
+  "Customer service",
+  "Sales and marketing",
+  "IT and computer",
+  "Engineering",
+  "Healthcare",
   "Education",
-  "Safety",
+  "Business and financial",
+  "Legal",
+  "Creative",
+  "Service",
 ];
 
 const AddEditData = ({ user, setActive }) => {
   const [form, setForm] = useState(initialState);
 
-  const [createDataText, setcreateDataText] = useState("Create Data");
-  const [updateDataText, setupdateDataText] = useState("Update Data");
+  const [createDataText, setcreateDataText] = useState("Add Job Listing");
+  const [updateDataText, setupdateDataText] = useState("Update Job Listing");
   const [isDisabled, setIsDisabled] = useState(false);
 
   const { id } = useParams();
 
   const navigate = useNavigate();
 
-  const { title, tags, category, trending, description, imgUrl } = form;
+  const { title, tags, category, description, imgUrl } = form;
 
   const [document, setDocument] = useState(null);
 
@@ -67,9 +65,9 @@ const AddEditData = ({ user, setActive }) => {
         const userDocRef = doc(db, "users", user.uid);
         const userDocSnapshot = await getDoc(userDocRef);
 
-        setUsername(userDocSnapshot.data().username);
+        setUsername(userDocSnapshot.data().fullName);
       } catch (error) {
-        console.error("Error retrieving user status: ", error);
+        console.error("Error retrieving user full name: ", error);
       }
     };
 
@@ -117,10 +115,10 @@ const AddEditData = ({ user, setActive }) => {
             setIsUploaded(true);
 
             if (id) {
-              setupdateDataText("Update Data");
+              setupdateDataText("Update Job Posting");
               setIsDisabled(false);
             } else {
-              setcreateDataText("Create Data");
+              setcreateDataText("Create Job Posting");
               setIsDisabled(false);
             }
 
@@ -140,7 +138,8 @@ const AddEditData = ({ user, setActive }) => {
   }, [id]);
 
   const getDataDetail = async () => {
-    const docRef = doc(db, "Datas", id);
+    const docRef = doc(db, "Jobs", id);
+
     const snapshot = await getDoc(docRef);
     if (snapshot.exists()) {
       setForm({ ...snapshot.data() });
@@ -156,44 +155,40 @@ const AddEditData = ({ user, setActive }) => {
     setForm({ ...form, tags });
   };
 
-  const handleTrending = (e) => {
-    setForm({ ...form, trending: e.target.value });
-  };
-
   const onCategoryChange = (e) => {
     setForm({ ...form, category: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (category && tags && title && description && trending && isUploaded) {
+    if (category && tags && title && description && isUploaded) {
       if (!id) {
         try {
-          setcreateDataText("Creating data...");
+          setcreateDataText("Adding job details...");
           setIsDisabled(true);
 
-          await addDoc(collection(db, "Datas"), {
+          await addDoc(collection(db, "Jobs"), {
             ...form,
             timestamp: serverTimestamp(),
             author: username,
             userId: user.uid,
           });
-          toast.success("Data created successfully");
+          toast.success("Posting created successfully");
         } catch (err) {
           console.log(err);
         }
       } else {
-        setupdateDataText("Updating data...");
+        setupdateDataText("Updating job details...");
         setIsDisabled(true);
 
         try {
-          await updateDoc(doc(db, "Datas", id), {
+          await updateDoc(doc(db, "Jobs", id), {
             ...form,
             timestamp: serverTimestamp(),
             author: username,
             userId: user.uid,
           });
-          toast.success("Data updated successfully");
+          toast.success("Posting updated successfully");
         } catch (err) {
           console.log(err);
         }
@@ -210,7 +205,7 @@ const AddEditData = ({ user, setActive }) => {
       <div className="container">
         <div className="col-12">
           <div className="text-center heading py-2">
-            {id ? "Update Data" : "Create Data"}
+            {id ? "Update Job Listing" : "Create Job Listing"}
           </div>
         </div>
         <div className="row h-100 justify-content-center align-items-center">
@@ -232,33 +227,6 @@ const AddEditData = ({ user, setActive }) => {
                   placeholder="Tags"
                   onChange={handleTags}
                 />
-              </div>
-              <div className="col-12 py-3">
-                <p className="trending">Is it trending Data ?</p>
-                <div className="form-check-inline mx-2">
-                  <input
-                    type="radio"
-                    className="form-check-input"
-                    value="yes"
-                    name="radioOption"
-                    checked={trending === "yes"}
-                    onChange={handleTrending}
-                  />
-                  <label htmlFor="radioOption" className="form-check-label">
-                    Yes&nbsp;
-                  </label>
-                  <input
-                    type="radio"
-                    className="form-check-input"
-                    value="no"
-                    name="radioOption"
-                    checked={trending === "no"}
-                    onChange={handleTrending}
-                  />
-                  <label htmlFor="radioOption" className="form-check-label">
-                    No
-                  </label>
-                </div>
               </div>
               <div className="col-12 py-3">
                 <select

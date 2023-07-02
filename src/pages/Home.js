@@ -38,7 +38,11 @@ const Home = ({ setActive, user, active }) => {
   const [loading, setLoading] = useState(true);
   const [Datas, setDatas] = useState([]);
   //const [tags, setTags] = useState([]);
-  const [search, setSearch] = useState({ text: null, category: null, tags: null });
+  const [search, setSearch] = useState({
+    text: null,
+    category: null,
+    tags: null,
+  });
   const [lastVisible, setLastVisible] = useState(null);
   const [trendDatas, setTrendDatas] = useState([]);
   const [totalDatas, setTotalDatas] = useState(null);
@@ -48,26 +52,18 @@ const Home = ({ setActive, user, active }) => {
   const location = useLocation();
   const [isAdmin, setisAdmin] = useState(false);
   const [filter, setFilter] = useState("text");
-  const [searchQuery, setSearchQuery] = useState({ text: null, category: null, tags: null });
-  const [filters, setFilters] = useState({ text: '', category: '', tags: '' });
+  const [searchQuery, setSearchQuery] = useState({
+    text: null,
+    category: null,
+    tags: null,
+  });
+  const [filters, setFilters] = useState({ text: "", category: "", tags: "" });
   const [categories, setCategories] = useState([]);
 
-  const getTrendingDatas = async () => {
-    const DataRef = collection(db, "Datas");
-    const trendQuery = query(DataRef, where("trending", "==", "yes"));
-    const querySnapshot = await getDocs(trendQuery);
-    let trendDatas = [];
-    querySnapshot.forEach((doc) => {
-      trendDatas.push({ id: doc.id, ...doc.data() });
-    });
-    setTrendDatas(trendDatas);
-  };
-
   useEffect(() => {
-    getTrendingDatas();
     setSearch("");
     const unsub = onSnapshot(
-      collection(db, "Datas"),
+      collection(db, "Jobs"),
       (snapshot) => {
         let list = [];
         let tags = [];
@@ -88,7 +84,6 @@ const Home = ({ setActive, user, active }) => {
 
     return () => {
       unsub();
-      getTrendingDatas();
     };
   }, [setActive, active]);
 
@@ -98,7 +93,7 @@ const Home = ({ setActive, user, active }) => {
   }, [active]);
 
   const getDatas = async () => {
-    const DataRef = collection(db, "Datas");
+    const DataRef = collection(db, "Jobs");
     console.log(DataRef);
     const firstFour = query(DataRef, orderBy("timestamp", "desc"), limit(4));
     const docSnapshot = await getDocs(firstFour);
@@ -106,7 +101,7 @@ const Home = ({ setActive, user, active }) => {
     setLastVisible(docSnapshot.docs[docSnapshot.docs.length - 1]);
   };
 
-  console.log("Datas", Datas);
+  console.log("Jobs", Datas);
 
   const updateState = (docSnapshot) => {
     const isCollectionEmpty = docSnapshot.size === 0;
@@ -118,14 +113,14 @@ const Home = ({ setActive, user, active }) => {
       setDatas((Datas) => [...Datas, ...DatasData]);
       setLastVisible(docSnapshot.docs[docSnapshot.docs.length - 1]);
     } else {
-      toast.info("No more Data to display");
+      toast.info("No more Jobs to display");
       setHide(true);
     }
   };
 
   const fetchMore = async () => {
     setLoading(true);
-    const DataRef = collection(db, "Datas");
+    const DataRef = collection(db, "Jobs");
     const nextFour = query(
       DataRef,
       orderBy("timestamp"),
@@ -138,11 +133,11 @@ const Home = ({ setActive, user, active }) => {
   };
 
   const searchDatas = async () => {
-    const DataRef = collection(db, "Datas");
+    const DataRef = collection(db, "Jobs");
     let searchQueryRef;
-  
+
     const conditions = [];
-  
+
     if (filters.text) {
       conditions.push(where("title", "==", filters.text));
     }
@@ -152,19 +147,18 @@ const Home = ({ setActive, user, active }) => {
     if (filters.tags) {
       conditions.push(where("tags", "array-contains", filters.tags));
     }
-  
+
     searchQueryRef = query(DataRef, ...conditions);
     const searchSnapshot = await getDocs(searchQueryRef);
-  
+
     let searchData = [];
     searchSnapshot.forEach((doc) => {
       searchData.push({ id: doc.id, ...doc.data() });
     });
-  
+
     setDatas(searchData);
     setHide(true);
   };
-  
 
   useEffect(() => {
     if (filters.text || filters.category || filters.tags) {
@@ -177,11 +171,11 @@ const Home = ({ setActive, user, active }) => {
   }
 
   const handleDelete = async (id) => {
-    if (window.confirm("Are you sure wanted to delete that Data ?")) {
+    if (window.confirm("Are you sure wanted to delete that Job Posting ?")) {
       try {
         setLoading(true);
-        await deleteDoc(doc(db, "Datas", id));
-        toast.success("Data deleted successfully");
+        await deleteDoc(doc(db, "Jobs", id));
+        toast.success("Posting deleted successfully");
         setLoading(false);
       } catch (err) {
         console.log(err);
@@ -221,35 +215,43 @@ const Home = ({ setActive, user, active }) => {
   // publisher count
   const totals = totalDatas.reduce((prevValue, currentValue) => {
     let name = currentValue.author;
+
     if (!prevValue.hasOwnProperty(name)) {
       prevValue[name] = 0;
     }
+
     prevValue[name]++;
     return prevValue;
   }, {});
 
-  const publisherCount = Object.keys(totals).map((k) => {
+  const recruiterCount = Object.keys(totals).map((k) => {
     return {
       author: k,
       count: totals[k],
     };
   });
 
-  console.log("publisherCount", publisherCount);
+  console.log("recruiterCount", recruiterCount);
 
   return (
     <div className="container-fluid pb-4 pt-4 padding">
       <div className="container padding">
         <div className="row mx-0" style={{ textAlign: "center" }}>
-          <Search filters={filters} handleChange={handleChange} categories={categories} setCategories={setCategories} db={db}/>
+          <Search
+            filters={filters}
+            handleChange={handleChange}
+            categories={categories}
+            setCategories={setCategories}
+            db={db}
+          />
           <div style={{ paddingTop: "30px" }} className="col-md-8">
             <div className="Data-heading text-start py-2 mb-4 text-center heading py-2">
-              Data
+              Jobs
             </div>
             {Datas.length === 0 && location.pathname !== "/" && (
               <>
                 <h4>
-                  No Data found with search keyword:{" "}
+                  No Jobs found with search keyword:{" "}
                   <strong>{searchQuery}</strong>
                 </h4>
               </>
@@ -273,7 +275,7 @@ const Home = ({ setActive, user, active }) => {
           </div>
           <div className="col-md-3" style={{ paddingTop: "30px" }}>
             <Category catgDatasCount={categoryCount} />
-            <Publisher pubDataCount={publisherCount} />
+            <Publisher pubDataCount={recruiterCount} />
             <FeatureDatas title={"Most Popular"} Datas={Datas} />
           </div>
         </div>

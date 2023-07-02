@@ -33,11 +33,11 @@ const Navbar = ({ active, setActive, user, handleLogout }) => {
         if (userDocSnapshot.data().role === "consumer") {
           setDisplayBoolean(false);
           setisAdmin(false);
-          console.log("Normal User");
-        } else if (userDocSnapshot.data().role === "publisher") {
+          console.log("Recruitee");
+        } else if (userDocSnapshot.data().role === "recruiter") {
           setDisplayBoolean(true);
           setisAdmin(false);
-          console.log("Publisher");
+          console.log("Recruiter");
         } else if (userDocSnapshot.data().role === "admin") {
           setisAdmin(true);
           setDisplayBoolean(true);
@@ -45,7 +45,7 @@ const Navbar = ({ active, setActive, user, handleLogout }) => {
         } else {
           setisAdmin(false);
           setDisplayBoolean(false);
-          console.log("Unknown User Role");
+          console.log("Unknown User Type");
         }
 
         //Check if user has been approved to publish
@@ -95,14 +95,14 @@ const Navbar = ({ active, setActive, user, handleLogout }) => {
                   </li>
                 </Link>
 
-                <Link to="/Data" style={{ textDecoration: "none" }}>
+                <Link to="/Jobs" style={{ textDecoration: "none" }}>
                   <li
                     className={`nav-item nav-link ${
-                      active === "Data" ? "active" : ""
+                      active === "Jobs" ? "active" : ""
                     }`}
-                    onClick={() => setActive("Data")}
+                    onClick={() => setActive("Jobs")}
                   >
-                    Data
+                    Jobs
                   </li>
                 </Link>
 
@@ -115,7 +115,7 @@ const Navbar = ({ active, setActive, user, handleLogout }) => {
                         }`}
                         onClick={() => setActive("create")}
                       >
-                        Create
+                        Add Job Listings
                       </li>
                     </Link>
                   ) : (
@@ -128,7 +128,7 @@ const Navbar = ({ active, setActive, user, handleLogout }) => {
                           toast.error("Wait for Approval from Admin")
                         }
                       >
-                        Create
+                        Add Job Listings
                       </li>
                     </Link>
                   )
