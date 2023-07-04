@@ -21,8 +21,7 @@ const initialState = {
   description: "",
   comments: [],
   likes: [],
-  imgUrl:
-    "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/wp2659176-art-wallpaper.jpg?alt=media&token=324f048a-9b3a-4156-aa11-0182071bdc0b",
+  imgUrl: "",
 };
 
 const categoryOption = [
@@ -37,6 +36,20 @@ const categoryOption = [
   "Legal",
   "Creative",
   "Service",
+];
+
+const imageOption = [
+  "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/office.jpg?alt=media&token=96c2e329-4d52-4bce-a179-4f6d492c2f54",
+  "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/service.jpg?alt=media&token=e4e17001-5d66-4aa4-a5fb-c5976827bd79",
+  "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/sales.jpg?alt=media&token=e0316345-b9a4-477c-8193-a8dc856d25b0",
+  "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/tech.png?alt=media&token=7a86eda3-229c-41ef-b158-738e20e432c9",
+  "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/engineering.jpg?alt=media&token=91c42db1-bdd5-4e01-9964-c438fcc44739",
+  "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/healthcare.jpg?alt=media&token=554f5d52-4693-47e3-b9b1-58cdbe62d717",
+  "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/education.jpg?alt=media&token=69eeada6-d5df-44c0-8ce6-c6183f1753a1",
+  "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/financial.jpg?alt=media&token=d343aa4e-c4a5-416e-87c1-574a1a575fd4",
+  "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/legal.jpg?alt=media&token=fbce4ec4-c417-4af5-bb42-378d2595bb3d",
+  "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/wp2659176-art-wallpaper.jpg?alt=media&token=324f048a-9b3a-4156-aa11-0182071bdc0b",
+  "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/service.jpg?alt=media&token=e4e17001-5d66-4aa4-a5fb-c5976827bd79",
 ];
 
 const AddEditData = ({ user, setActive }) => {
@@ -156,7 +169,42 @@ const AddEditData = ({ user, setActive }) => {
   };
 
   const onCategoryChange = (e) => {
-    setForm({ ...form, category: e.target.value });
+    setForm({
+      ...form,
+      category: e.target.value,
+      imgUrl: getMindList(e.target.value),
+    });
+  };
+
+  // Function to get the mind list based on the selected item from hello
+  const getMindList = (selectedItem) => {
+    // Example logic for generating the mind list based on the selected item
+    switch (selectedItem) {
+      case "Administrative and office":
+        return "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/office.jpg?alt=media&token=96c2e329-4d52-4bce-a179-4f6d492c2f54";
+      case "Customer service":
+        return "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/service.jpg?alt=media&token=e4e17001-5d66-4aa4-a5fb-c5976827bd79";
+      case "Sales and marketing":
+        return "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/sales.jpg?alt=media&token=e0316345-b9a4-477c-8193-a8dc856d25b0";
+      case "IT and computer":
+        return "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/tech.png?alt=media&token=7a86eda3-229c-41ef-b158-738e20e432c9";
+      case "Engineering":
+        return "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/engineering.jpg?alt=media&token=91c42db1-bdd5-4e01-9964-c438fcc44739";
+      case "Healthcare":
+        return "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/healthcare.jpg?alt=media&token=554f5d52-4693-47e3-b9b1-58cdbe62d717";
+      case "Education":
+        return "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/education.jpg?alt=media&token=69eeada6-d5df-44c0-8ce6-c6183f1753a1";
+      case "Business and financial":
+        return "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/financial.jpg?alt=media&token=d343aa4e-c4a5-416e-87c1-574a1a575fd4";
+      case "Legal":
+        return "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/legal.jpg?alt=media&token=fbce4ec4-c417-4af5-bb42-378d2595bb3d";
+      case "Creative":
+        return "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/wp2659176-art-wallpaper.jpg?alt=media&token=324f048a-9b3a-4156-aa11-0182071bdc0b";
+      case "Service":
+        return "https://firebasestorage.googleapis.com/v0/b/skillconnect-f6945.appspot.com/o/service.jpg?alt=media&token=e4e17001-5d66-4aa4-a5fb-c5976827bd79";
+      default:
+        return "";
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -235,6 +283,7 @@ const AddEditData = ({ user, setActive }) => {
                   className="catg-dropdown"
                 >
                   <option>Please select category</option>
+                  {/* Category */}
                   {categoryOption.map((option, index) => (
                     <option value={option || ""} key={index}>
                       {option}

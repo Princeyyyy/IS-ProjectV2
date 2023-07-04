@@ -5,14 +5,14 @@ import DataSection from "../components/DataSection";
 import Spinner from "../components/Spinner";
 import { db } from "../firebase";
 
-const TagData = ({setActive}) => {
+const TagData = ({ setActive }) => {
   const [tagDatas, setTagDatas] = useState([]);
   const [loading, setLoading] = useState(false);
   const { tag } = useParams();
 
   const getTagDatas = async () => {
     setLoading(true);
-    const DataRef = collection(db, "Datas");
+    const DataRef = collection(db, "Jobs");
     const tagDataQuery = query(DataRef, where("tags", "array-contains", tag));
     const docSnapshot = await getDocs(tagDataQuery);
     let tagDatas = [];

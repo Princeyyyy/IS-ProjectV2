@@ -12,7 +12,7 @@ const CategoryData = ({ setActive }) => {
 
   const getCategoryDatas = async () => {
     setLoading(true);
-    const DataRef = collection(db, "Datas");
+    const DataRef = collection(db, "Jobs");
     const categoryDataQuery = query(DataRef, where("category", "==", category));
     const docSnapshot = await getDocs(categoryDataQuery);
     let categoryDatas = [];

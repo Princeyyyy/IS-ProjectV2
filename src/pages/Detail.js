@@ -38,7 +38,7 @@ const Detail = ({ setActive, user }) => {
 
   useEffect(() => {
     const getRecentDatas = async () => {
-      const DataRef = collection(db, "Datas");
+      const DataRef = collection(db, "Jobs");
       const recentDatas = query(
         DataRef,
         orderBy("timestamp", "desc"),

@@ -14,7 +14,7 @@ const UserData = ({ setActive }) => {
 
   const getUserDatas = async () => {
     setLoading(true);
-    const DataRef = collection(db, "Datas");
+    const DataRef = collection(db, "Jobs");
     const UserDataQuery = query(DataRef, where("author", "==", author));
     const docSnapshot = await getDocs(UserDataQuery);
     let UserDatas = [];
@@ -45,8 +45,7 @@ const UserData = ({ setActive }) => {
     ? UserDatas.filter((item) => item.category === selectedCategory)
     : UserDatas;
 
-    console.log("displayedData", displayedData);
-
+  console.log("displayedData", displayedData);
 
   if (loading) {
     return <Spinner />;
@@ -57,7 +56,7 @@ const UserData = ({ setActive }) => {
       <div className="container">
         <div className="row">
           <div className="Data-heading text-center py-2 mb-4">
-            Publisher: <strong>{author.toLocaleUpperCase()}</strong>
+            Recruiter: <strong>{author.toLocaleUpperCase()}</strong>
           </div>
           <div className="text-center mb-4">
             <button

@@ -177,6 +177,10 @@ const Home = ({ setActive, user, active }) => {
         await deleteDoc(doc(db, "Jobs", id));
         toast.success("Posting deleted successfully");
         setLoading(false);
+
+        setTimeout(() => {
+          window.location.reload(false);
+        }, 3000);
       } catch (err) {
         console.log(err);
       }
@@ -186,11 +190,6 @@ const Home = ({ setActive, user, active }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFilters({ ...filters, [name]: value });
-  };
-
-  const handleFilterChange = (e) => {
-    const { value } = e.target;
-    setFilter(value);
   };
 
   // category count
@@ -212,7 +211,7 @@ const Home = ({ setActive, user, active }) => {
 
   console.log("categoryCount", categoryCount);
 
-  // publisher count
+  // recruiter count
   const totals = totalDatas.reduce((prevValue, currentValue) => {
     let name = currentValue.author;
 

@@ -44,7 +44,7 @@ const Datas = ({ setActive }) => {
 
   const getDatasData = async () => {
     setLoading(true);
-    const DataRef = collection(db, "Datas");
+    const DataRef = collection(db, "Jobs");
     const first = query(DataRef, orderBy("title"), limit(6));
     const docSnapshot = await getDocs(first);
     setDatas(docSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
@@ -54,7 +54,7 @@ const Datas = ({ setActive }) => {
   };
 
   const getTotalDatas = async () => {
-    const DataRef = collection(db, "Datas");
+    const DataRef = collection(db, "Jobs");
     const docSnapshot = await getDocs(DataRef);
     const totalDatas = docSnapshot.size;
     const totalPage = Math.ceil(totalDatas / 4);
@@ -64,7 +64,7 @@ const Datas = ({ setActive }) => {
 
   const fetchMore = async () => {
     setLoading(true);
-    const DataRef = collection(db, "Datas");
+    const DataRef = collection(db, "Jobs");
     const nextDatasQuery = query(
       DataRef,
       orderBy("title"),
@@ -82,7 +82,7 @@ const Datas = ({ setActive }) => {
 
   const fetchPrev = async () => {
     setLoading(true);
-    const DataRef = collection(db, "Datas");
+    const DataRef = collection(db, "Jobs");
     const end =
       noOfPages !== currentPage ? endAt(lastVisible) : endBefore(lastVisible);
     const limitData =
@@ -129,7 +129,7 @@ const Datas = ({ setActive }) => {
             style={{ fontWeight: "bold" }}
             className="Data-heading text-center py-2 mb-4"
           >
-            Data: {totalCount} datasets
+            Total of {totalCount} jobs available
           </div>
           {Datas?.map((Data) => (
             <div className="col-md-6" key={Data.id}>
