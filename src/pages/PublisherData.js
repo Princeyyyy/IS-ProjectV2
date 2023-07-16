@@ -62,6 +62,7 @@ const UserData = ({ setActive }) => {
             <button
               className="btn btn-secondary me-2"
               onClick={() => handleCategoryChange(null)}
+              style={{ marginTop: "10px" }} // Add this line
             >
               All
             </button>
@@ -70,6 +71,7 @@ const UserData = ({ setActive }) => {
                 key={category}
                 className="btn btn-secondary me-2"
                 onClick={() => handleCategoryChange(category)}
+                style={{ marginTop: "10px" }} // Add this line
               >
                 {category}
               </button>

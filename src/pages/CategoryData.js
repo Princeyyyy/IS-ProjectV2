@@ -37,7 +37,7 @@ const CategoryData = ({ setActive }) => {
       <div className="container">
         <div className="row">
           <div className="Data-heading text-center py-2 mb-4">
-            Category: <strong>{category.toLocaleUpperCase()}</strong>
+            Industry: <strong>{category.toLocaleUpperCase()}</strong>
           </div>
           {categoryDatas?.map((item) => (
             <div className="col-md-6">

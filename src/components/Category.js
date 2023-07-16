@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Category = ({ catgDatasCount }) => {
   return (
     <div className="widget">
-      <div className="Data-heading text-start py-2 mb-4">Categories</div>
+      <div className="Data-heading text-start py-2 mb-4">Industries</div>
       <div className="link-widget">
         <ul>
           {catgDatasCount?.map((item, index) => (
