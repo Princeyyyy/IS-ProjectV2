@@ -174,7 +174,7 @@ const Navbar = ({ active, setActive, user, handleLogout }) => {
                           }}
                         />
                       </div>
-                      <p style={{ marginTop: "12px", marginLeft: "5px" }}>
+                      <p style={{ marginTop: "14px", marginLeft: "10px" }}>
                         {username}
                       </p>
                       <li className="nav-item nav-link" onClick={handleLogout}>
@@ -182,7 +182,7 @@ const Navbar = ({ active, setActive, user, handleLogout }) => {
                       </li>
                     </>
                   ) : (
-                    <Link to="/auth" style={{ textDecoration: "none" }}>
+                    <Link to="/login" style={{ textDecoration: "none" }}>
                       <li
                         className={`nav-item nav-link ${
                           active === "login" ? "active" : ""
@@ -190,6 +190,19 @@ const Navbar = ({ active, setActive, user, handleLogout }) => {
                         onClick={() => setActive("login")}
                       >
                         Login
+                      </li>
+                    </Link>
+                  )}
+
+                  {userId ? null : (
+                    <Link to="/signup" style={{ textDecoration: "none" }}>
+                      <li
+                        className={`nav-item nav-link ${
+                          active === "signup" ? "active" : ""
+                        }`}
+                        onClick={() => setActive("signup")}
+                      >
+                        Create Account
                       </li>
                     </Link>
                   )}

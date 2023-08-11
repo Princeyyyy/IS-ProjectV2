@@ -1,7 +1,6 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  updateProfile,
 } from "firebase/auth";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
@@ -17,9 +16,8 @@ const initialState = {
   role: "recruitee",
 };
 
-const Auth = ({ setActive, setUser }) => {
+const Auth = ({ setActive, setUser, sign }) => {
   const [state, setState] = useState(initialState);
-  const [signUp, setSignUp] = useState(false);
 
   const [signUpText, setsignUpText] = useState("Sign Up");
   const [signInText, setsignInText] = useState("Sign In");
@@ -39,7 +37,7 @@ const Auth = ({ setActive, setUser }) => {
 
   const handleAuth = async (e) => {
     e.preventDefault();
-    if (!signUp) {
+    if (!sign) {
       if (email && password) {
         setsignInText("Signing in...");
         setIsDisabled(true);
@@ -116,13 +114,13 @@ const Auth = ({ setActive, setUser }) => {
       <div className="container">
         <div className="col-12 text-center">
           <div className="text-center heading py-2">
-            {!signUp ? "Sign-In" : "Create an Account"}
+            {!sign ? "Sign-In" : "Create an Account"}
           </div>
         </div>
         <div className="row h-100 justify-content-center align-items-center">
           <div className="col-10 col-md-8 col-lg-6">
             <form className="row" onSubmit={handleAuth}>
-              {signUp && (
+              {sign && (
                 <>
                   <div className="col-12 py-3">
                     <input
@@ -183,7 +181,7 @@ const Auth = ({ setActive, setUser }) => {
                   onChange={handleChange}
                 />
               </div>
-              {signUp && (
+              {sign && (
                 <div className="col-12 py-3">
                   <input
                     type="password"
@@ -198,16 +196,16 @@ const Auth = ({ setActive, setUser }) => {
 
               <div className="col-12 py-3 text-center">
                 <button
-                  className={`btn ${!signUp ? "btn-sign-in" : "btn-sign-up"}`}
+                  className={`btn ${!sign ? "btn-sign-in" : "btn-sign-up"}`}
                   type="submit"
                   disabled={isDisabled}
                 >
-                  {!signUp ? signInText : signUpText}
+                  {!sign ? signInText : signUpText}
                 </button>
               </div>
             </form>
             <div>
-              {!signUp ? (
+              {!sign ? (
                 <>
                   <div className="text-center justify-content-center mt-2 pt-2">
                     <p className="small fw-bold mt-2 pt-1 mb-0">
@@ -219,7 +217,10 @@ const Auth = ({ setActive, setUser }) => {
                           cursor: "pointer",
                           color: "#ff5722",
                         }}
-                        onClick={() => setSignUp(true)}
+                        onClick={() => {
+                          setActive("signup");
+                          navigate("/signup");
+                        }}
                       >
                         Sign Up
                       </span>
@@ -237,7 +238,10 @@ const Auth = ({ setActive, setUser }) => {
                           cursor: "pointer",
                           color: "#0068ca",
                         }}
-                        onClick={() => setSignUp(false)}
+                        onClick={() => {
+                          setActive("login");
+                          navigate("/login");
+                        }}
                       >
                         Sign In
                       </span>

@@ -91,8 +91,14 @@ function App() {
         />
         <Route path="/about" element={<About />} />
         <Route
-          path="/auth"
-          element={<Auth setActive={setActive} setUser={setUser} />}
+          path="/login"
+          element={
+            <Auth setActive={setActive} setUser={setUser} sign={false} />
+          }
+        />
+        <Route
+          path="/signup"
+          element={<Auth setActive={setActive} setUser={setUser} sign={true} />}
         />
         <Route path="*" element={<NotFound />} />
         <Route path="/approval" element={<Approval setActive={setActive} />} />

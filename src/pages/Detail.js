@@ -19,7 +19,6 @@ import CommentBox from "../components/CommentBox";
 import Like from "../components/Like";
 import FeatureData from "../components/FeatureData";
 import RelatedData from "../components/RelatedData";
-import Tags from "../components/Tags";
 import UserComments from "../components/UserComments";
 import { db } from "../firebase";
 import Spinner from "../components/Spinner";
@@ -167,7 +166,7 @@ const Detail = ({ setActive, user }) => {
                   {isEmpty(comments) ? (
                     <UserComments
                       msg={
-                        "No Comment yet posted on this Data. Be the first to comment"
+                        "No Comment yet posted on this Job. Be the first to comment"
                       }
                     />
                   ) : (
@@ -187,7 +186,7 @@ const Detail = ({ setActive, user }) => {
               />
             </div>
             <div className="col-md-3">
-              <FeatureData title={"Recent Datas"} Datas={Datas} />
+              <FeatureData title={"Recent Jobs"} Datas={Datas} />
             </div>
           </div>
           <RelatedData id={id} Datas={RelatedDatas} />

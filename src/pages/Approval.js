@@ -17,7 +17,7 @@ const Approval = ({ setActive }) => {
       const first = query(
         DataRef,
         where("approved", "==", false),
-        where("role", "!=", "admin")
+        where("role", "==", "recruiter")
       );
       const docSnapshot = await getDocs(first);
       setDatas(docSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
