@@ -40,7 +40,7 @@ function App() {
     signOut(auth).then(() => {
       setUser(null);
       setActive("login");
-      navigate("/auth");
+      navigate("/login");
     });
   };
 

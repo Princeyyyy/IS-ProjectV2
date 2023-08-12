@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { auth, db } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { setDoc, doc } from "firebase/firestore";
+import emailjs from "emailjs-com";
 
 const initialState = {
   fullName: "",
@@ -89,6 +90,45 @@ const Auth = ({ setActive, setUser, sign }) => {
             role: role,
             approved: false,
           });
+
+          const templateParams = {
+            name: fullName,
+            email: email,
+          };
+
+          if (role === "recruiter") {
+            emailjs
+              .send(
+                "service_8lbs1m7",
+                "template_yl5f2ag",
+                templateParams,
+                "uH1SYpD3uoE7U8CVNeb53dTolad03a1uZiBrJ8"
+              )
+              .then(
+                function (response) {
+                  console.log("SUCCESS!", response.status, response.text);
+                },
+                function (error) {
+                  console.log("FAILED...", error);
+                }
+              );
+          } else {
+            emailjs
+              .send(
+                "service_8lbs1m7",
+                "template_lxltl3e",
+                templateParams,
+                "7U8CVNeb53dTolad0"
+              )
+              .then(
+                function (response) {
+                  console.log("SUCCESS!", response.status, response.text);
+                },
+                function (error) {
+                  console.log("FAILED...", error);
+                }
+              );
+          }
 
           setUser(user);
           setActive("home");
