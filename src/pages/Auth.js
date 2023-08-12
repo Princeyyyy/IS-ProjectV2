@@ -91,18 +91,20 @@ const Auth = ({ setActive, setUser, sign }) => {
             approved: false,
           });
 
-          const templateParams = {
-            name: fullName,
-            email: email,
-          };
-
           if (role === "recruiter") {
+            const templateParams = {
+              name: fullName,
+              email: email,
+              message:
+                "I hope this message finds you well. We wanted to personally extend our gratitude for signing up to use our platform for your job postings. We appreciate your interest and trust in our services. We would like to inform you that your account is currently under review as part of our verification process. This process is in place to ensure the quality and authenticity of job postings on our platform. Please rest assured that we are working diligently to review your account, and you can expect this process to be completed within the next 2-3 business days. Once your account has been successfully reviewed and verified, you will be able to start posting jobs and utilizing all the features our platform has to offer. We are excited to have you on board and look forward to supporting your recruitment efforts. If you have any questions, need assistance, or want to share your success stories, don't hesitate to reach out to us. Our team is here to ensure that your experience on our platform is nothing short of exceptional. Thank you once again for choosing our platform, and we can't wait to see the positive impact your job postings will make.",
+            };
+
             emailjs
               .send(
                 "service_8lbs1m7",
                 "template_yl5f2ag",
                 templateParams,
-                "uH1SYpD3uoE7U8CVNeb53dTolad03a1uZiBrJ8"
+                "7U8CVNeb53dTolad0"
               )
               .then(
                 function (response) {
@@ -113,10 +115,17 @@ const Auth = ({ setActive, setUser, sign }) => {
                 }
               );
           } else {
+            const templateParams = {
+              name: fullName,
+              email: email,
+              message:
+                "Welcome aboard to our platform! We're thrilled to have you join our community of motivated job seekers and career enthusiasts. Your decision to become a part of our platform reflects your dedication to advancing your career and personal growth, and we're here to support you every step of the way. As you embark on your journey with us, we want you to know that our platform is designed to empower you with opportunities and resources to enhance your skills and expand your horizons. Whether you're searching for your dream job, aiming to upskill, or exploring new career avenues, our platform is your ally in achieving your goals. In addition to job listings, we offer a wealth of development materials, including tutorials, articles, webinars, and more, all curated to help you sharpen your skills and stay ahead in today's dynamic job market. Feel free to explore these resources and make the most of your time on our platform. Your journey has just begun, and we can't wait to witness your achievements and growth. If you have any questions, need assistance, or want to share your success stories, don't hesitate to reach out to us. Our team is here to ensure that your experience on our platform is nothing short of exceptional. Thank you for entrusting us with a part of your career journey. Let's embark on this exciting path together and turn your dreams into reality.",
+            };
+
             emailjs
               .send(
                 "service_8lbs1m7",
-                "template_lxltl3e",
+                "template_yl5f2ag",
                 templateParams,
                 "7U8CVNeb53dTolad0"
               )
