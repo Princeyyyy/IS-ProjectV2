@@ -23,36 +23,47 @@ const Navbar = ({ active, setActive, user, handleLogout }) => {
   useEffect(() => {
     const getUser = async () => {
       try {
+        // Check if userId is defined and valid
+        if (!userId) {
+          console.error("User ID is not defined.");
+          return;
+        }
+
         // Create a reference to the document with the specified user ID
         const userDocRef = doc(db, "users", userId);
         const userDocSnapshot = await getDoc(userDocRef);
 
-        setUsername(userDocSnapshot.data().fullName);
+        if (userDocSnapshot.exists()) {
+          setUsername(userDocSnapshot.data().fullName);
 
-        // Check state of the user
-        if (userDocSnapshot.data().role === "consumer") {
-          setDisplayBoolean(false);
-          setisAdmin(false);
-          console.log("Recruitee");
-        } else if (userDocSnapshot.data().role === "recruiter") {
-          setDisplayBoolean(true);
-          setisAdmin(false);
-          console.log("Recruiter");
-        } else if (userDocSnapshot.data().role === "admin") {
-          setisAdmin(true);
-          setDisplayBoolean(true);
-          console.log("Admin");
-        } else {
-          setisAdmin(false);
-          setDisplayBoolean(false);
-          console.log("Unknown User Type");
-        }
+          // Check state of the user
+          if (userDocSnapshot.data().role === "consumer") {
+            setDisplayBoolean(false);
+            setisAdmin(false);
+            console.log("Recruitee");
+          } else if (userDocSnapshot.data().role === "recruiter") {
+            setDisplayBoolean(true);
+            setisAdmin(false);
+            console.log("Recruiter");
+          } else if (userDocSnapshot.data().role === "admin") {
+            setisAdmin(true);
+            setDisplayBoolean(true);
+            console.log("Admin");
+          } else {
+            setisAdmin(false);
+            setDisplayBoolean(false);
+            console.log("Unknown User Type");
+          }
 
-        //Check if user has been approved to publish
-        if (userDocSnapshot.data().approved === true) {
-          isApproved(true);
+          // Check if user has been approved to publish
+          if (userDocSnapshot.data().approved === true) {
+            isApproved(true);
+          } else {
+            isApproved(false);
+          }
         } else {
-          isApproved(false);
+          // Handle the case where the document doesn't exist
+          console.error("User document does not exist.");
         }
       } catch (error) {
         console.error("Error retrieving user status: ", error);
@@ -146,6 +157,17 @@ const Navbar = ({ active, setActive, user, handleLogout }) => {
                     </li>
                   </Link>
                 ) : null}
+
+                <Link to="/skillmaterial" style={{ textDecoration: "none" }}>
+                  <li
+                    className={`nav-item nav-link ${
+                      active === "skillmaterial" ? "active" : ""
+                    }`}
+                    onClick={() => setActive("skillmaterial")}
+                  >
+                    Skill Development Materials
+                  </li>
+                </Link>
 
                 <Link to="/about" style={{ textDecoration: "none" }}>
                   <li

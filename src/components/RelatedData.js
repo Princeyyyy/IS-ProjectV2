@@ -14,11 +14,9 @@ const RelatedData = ({ Datas, id }) => {
               Related Data not found with this current Data
             </h5>
           )}
-          {Datas
-            ?.filter((Datas) => Datas.id !== id)
-            .map((item) => (
-              <Card {...item} />
-            ))}
+          {Datas?.filter((item) => item.id !== id).map((item) => (
+            <Card key={item.id} {...item} />
+          ))}
         </div>
       </div>
     </div>

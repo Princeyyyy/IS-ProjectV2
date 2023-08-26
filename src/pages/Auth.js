@@ -24,7 +24,7 @@ const Auth = ({ setActive, setUser, sign }) => {
   const [signInText, setsignInText] = useState("Sign In");
   const [isDisabled, setIsDisabled] = useState(false);
 
-  const { email, password, fullName, confirmPassword, role } = state;
+  const { number, email, password, fullName, confirmPassword, role } = state;
 
   const navigate = useNavigate();
 
@@ -70,7 +70,7 @@ const Auth = ({ setActive, setUser, sign }) => {
       if (password !== confirmPassword) {
         return toast.error("Password don't match");
       }
-      if (fullName && email && password) {
+      if (fullName && email && password && number) {
         setsignUpText("Creating your account...");
         setIsDisabled(true);
 
@@ -89,6 +89,7 @@ const Auth = ({ setActive, setUser, sign }) => {
             email: email,
             role: role,
             approved: false,
+            number: number,
           });
 
           if (role === "recruiter") {
@@ -220,6 +221,18 @@ const Auth = ({ setActive, setUser, sign }) => {
                   onChange={handleChange}
                 />
               </div>
+              {sign && (
+                <div className="col-12 py-3">
+                  <input
+                    type="tel"
+                    className="form-control input-text-box"
+                    placeholder="Phone Number"
+                    name="number"
+                    value={number}
+                    onChange={handleChange}
+                  />
+                </div>
+              )}
               <div className="col-12 py-3">
                 <input
                   type="password"

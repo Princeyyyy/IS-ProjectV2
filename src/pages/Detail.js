@@ -148,7 +148,7 @@ const Detail = ({ setActive, user }) => {
           <div className="row mx-0">
             <div className="col-md-8">
               <span className="meta-info text-start">
-                By <p className="author">{Data?.author}</p> -&nbsp;
+                Posted By <p className="author">{Data?.author}</p> on&nbsp;
                 {Data?.timestamp.toDate().toDateString()}
                 <Like
                   handleLike={handleLike}

@@ -19,6 +19,7 @@ import Data from "./pages/Data";
 import Approval from "./pages/Approval";
 import PublisherData from "./pages/PublisherData";
 import Search from "./components/Search";
+import SkillDevelopmentMaterials from "./pages/SkillMaterials";
 
 function App() {
   const [active, setActive] = useState("home");
@@ -89,6 +90,7 @@ function App() {
           path="/category/:category"
           element={<CategoryData setActive={setActive} />}
         />
+        <Route path="/skillmaterial" element={<SkillDevelopmentMaterials />} />
         <Route path="/about" element={<About />} />
         <Route
           path="/login"
