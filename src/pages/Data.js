@@ -14,23 +14,17 @@ import { useEffect } from "react";
 import { useState } from "react";
 import DataSection from "../components/DataSection";
 import Pagination from "../components/Pagination";
-import Search from "../components/Search";
 import Spinner from "../components/Spinner";
 import { db } from "../firebase";
-import { isEmpty, isNull } from "lodash";
 
 const Datas = ({ setActive }) => {
   const [loading, setLoading] = useState(false);
   const [Datas, setDatas] = useState([]);
-  const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [lastVisible, setLastVisible] = useState(null);
   const [noOfPages, setNoOfPages] = useState(null);
   const [count, setCount] = useState(null);
   const [totalCount, setTotalCount] = useState(null);
-  const [hide, setHide] = useState(false);
-  const [category, setCategory] = useState("");
-  const [tags, setTags] = useState([]);
 
   useEffect(() => {
     getDatasData();
@@ -109,16 +103,6 @@ const Datas = ({ setActive }) => {
       setCurrentPage((page) => page - 1);
       fetchPrev();
     }
-  };
-
-  const handleChange = (e) => {
-    const { value } = e.target;
-    if (isEmpty(value)) {
-      console.log("test");
-      getDatasData();
-      setHide(false);
-    }
-    setSearch(value);
   };
 
   return (

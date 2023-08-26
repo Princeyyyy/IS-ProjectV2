@@ -135,7 +135,12 @@ const Detail = ({ setActive, user }) => {
     <div className="single">
       <div
         className="Data-title-box"
-        style={{ backgroundImage: `url('${Data?.imgUrl}')` }}
+        style={{
+          backgroundImage: `url('/images/image.jpg')`, // Use the imported image
+          backgroundSize: "cover", // Adjust as needed
+          backgroundRepeat: "no-repeat", // Adjust as needed
+          backgroundPosition: "center", // Adjust as needed
+        }}
       >
         <div className="overlay"></div>
         <div className="Data-title">

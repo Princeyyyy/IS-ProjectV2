@@ -9,18 +9,14 @@ import {
   orderBy,
   where,
   startAfter,
-  getDoc,
 } from "firebase/firestore";
 import React, { useState, useEffect } from "react";
 import DataSection from "../components/DataSection";
 import Spinner from "../components/Spinner";
 import { db } from "../firebase";
 import { toast } from "react-toastify";
-import Tags from "../components/Tags";
 import FeatureDatas from "../components/FeatureData";
-import Trending from "../components/Trending";
 import Search from "../components/Search";
-import { isEmpty, isNull } from "lodash";
 import { useLocation } from "react-router-dom";
 import Category from "../components/Category";
 import Publisher from "../components/Publisher";
@@ -37,21 +33,18 @@ const Home = ({ setActive, user, active }) => {
   const [state, setState] = useState(initialState);
   const [loading, setLoading] = useState(true);
   const [Datas, setDatas] = useState([]);
-  //const [tags, setTags] = useState([]);
   const [search, setSearch] = useState({
     text: null,
     category: null,
     tags: null,
   });
   const [lastVisible, setLastVisible] = useState(null);
-  const [trendDatas, setTrendDatas] = useState([]);
   const [totalDatas, setTotalDatas] = useState(null);
   const [hide, setHide] = useState(false);
   const queryString = useQuery();
   //const searchQuery = queryString.get("searchQuery");
   const location = useLocation();
   const [isAdmin, setisAdmin] = useState(false);
-  const [filter, setFilter] = useState("text");
   const [searchQuery, setSearchQuery] = useState({
     text: null,
     category: null,
@@ -72,7 +65,6 @@ const Home = ({ setActive, user, active }) => {
           list.push({ id: doc.id, ...doc.data() });
         });
         const uniqueTags = [...new Set(tags)];
-        //setTags(uniqueTags);
         setTotalDatas(list);
         setLoading(false);
         setActive("home");
