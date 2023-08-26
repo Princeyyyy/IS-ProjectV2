@@ -30,6 +30,12 @@ function useQuery() {
 }
 
 const Home = ({ setActive, user, active }) => {
+  const spinnerStyle = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  };
+
   const [state, setState] = useState(initialState);
   const [loading, setLoading] = useState(true);
   const [Datas, setDatas] = useState([]);
@@ -159,7 +165,12 @@ const Home = ({ setActive, user, active }) => {
   }, [filters]);
 
   if (loading) {
-    return <Spinner />;
+    return (
+      <div className="centered-spinner-container" style={spinnerStyle}>
+        {loading && <Spinner />}
+        {/* Your other content */}
+      </div>
+    );
   }
 
   const handleDelete = async (id) => {

@@ -15,7 +15,7 @@ const FeatureDatas = ({ Datas, title }) => {
         >
           <div className="col-5 align-self-center">
             <img
-              src={item.imgUrl}
+              src="/images/image.jpg"
               alt={item.title}
               className="most-popular-img"
             />
