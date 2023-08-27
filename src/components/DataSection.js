@@ -14,7 +14,6 @@ const DataSection = ({
   title,
   description,
   category,
-  imgUrl,
   userId,
   author,
   timestamp,
@@ -38,8 +37,7 @@ const DataSection = ({
         } else {
           setisAdmin(false);
         }
-      } catch (error) {
-      }
+      } catch (error) {}
     };
 
     getUser();

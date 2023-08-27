@@ -11,7 +11,7 @@ const RelatedData = ({ Datas, id }) => {
         <div className="row gx-5">
           {Datas.length === 1 && (
             <h5 className="text-center">
-              Related Data not found with this current Data
+              Related Data not found with this current Job
             </h5>
           )}
           {Datas?.filter((item) => item.id !== id).map((item) => (

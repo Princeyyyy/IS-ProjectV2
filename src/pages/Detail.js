@@ -64,7 +64,6 @@ const Detail = ({ setActive, user }) => {
     return (
       <div className="centered-spinner-container" style={spinnerStyle}>
         {loading && <Spinner />}
-        {/* Your other content */}
       </div>
     );
   }

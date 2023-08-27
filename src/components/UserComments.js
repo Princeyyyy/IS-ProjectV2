@@ -13,9 +13,15 @@ const UserComments = ({ name, body, createdAt, msg }) => {
                 <>
                   <div className="media-left">
                     <img
-                      src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                      src="/images/profile.png"
                       alt="user"
                       className="rounded-circle"
+                      style={{
+                        width: "40px",
+                        height: "40px",
+                        borderRadius: "50%",
+                        marginTop: "6px",
+                      }}
                     />
                   </div>
                   <div className="media-body">

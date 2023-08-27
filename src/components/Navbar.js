@@ -186,7 +186,7 @@ const Navbar = ({ active, setActive, user, handleLogout }) => {
                     <>
                       <div className="profile-logo">
                         <img
-                          src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                          src="/images/profile.png"
                           alt="logo"
                           style={{
                             width: "30px",

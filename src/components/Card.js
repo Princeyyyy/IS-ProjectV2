@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { excerpt } from "../utility";
 
-const Card = ({ title, description, imgUrl, id, likes, comments }) => {
+const Card = ({ title, description, id, likes, comments }) => {
   return (
     <div className="col-sm-6 col-lg-4 mb-5">
       <div className="related-content card text-decoration-none overflow-hidden h-100">
