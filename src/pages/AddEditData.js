@@ -21,6 +21,7 @@ const initialState = {
   description: "",
   comments: [],
   likes: [],
+  isAvailable: true,
 };
 
 const categoryOption = [
@@ -44,11 +45,17 @@ const AddEditData = ({ user, setActive }) => {
   const [updateDataText, setupdateDataText] = useState("Update Job Listing");
   const [isDisabled, setIsDisabled] = useState(false);
 
+  const handlerole = (e) => {
+    const newValue = e.target.value === "true"; // Convert the string to a boolean
+    console.log(newValue);
+    setForm({ ...form, isAvailable: newValue });
+  };
+
   const { id } = useParams();
 
   const navigate = useNavigate();
 
-  const { title, tags, category, description } = form;
+  const { title, tags, category, description, isAvailable } = form;
 
   const [document, setDocument] = useState(null);
 
@@ -220,6 +227,33 @@ const AddEditData = ({ user, setActive }) => {
                   value={title}
                   onChange={handleChange}
                 />
+              </div>
+              <div className="col-12 py-3">
+                <p className="role">Is Job Available For Hiring?</p>
+                <div className="form-check-inline mx-2">
+                  <input
+                    type="radio"
+                    className="form-check-input"
+                    value={true}
+                    name="radioOption"
+                    checked={isAvailable === true}
+                    onChange={handlerole}
+                  />
+                  <label htmlFor="radioOption" className="form-check-label">
+                    &nbsp; Yes &nbsp;
+                  </label>
+                  <input
+                    type="radio"
+                    className="form-check-input"
+                    value={false}
+                    name="radioOption"
+                    checked={isAvailable === false}
+                    onChange={handlerole}
+                  />
+                  <label htmlFor="radioOption" className="form-check-label">
+                    &nbsp; No &nbsp;
+                  </label>
+                </div>
               </div>
               <div className="col-12 py-3">
                 <ReactTagInput

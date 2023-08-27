@@ -40,6 +40,7 @@ const Detail = ({ setActive, user }) => {
   let [likes, setLikes] = useState([]);
   const [userComment, setUserComment] = useState("");
   const [RelatedDatas, setRelatedDatas] = useState([]);
+  const [isAvailable, setisAvailable] = useState(false);
 
   useEffect(() => {
     const getRecentDatas = async () => {
@@ -91,6 +92,9 @@ const Detail = ({ setActive, user }) => {
       RelatedDatas.push({ id: doc.id, ...doc.data() });
     });
     setRelatedDatas(RelatedDatas);
+
+    setisAvailable(Data?.isAvailable === "true");
+
     setActive(null);
     setLoading(false);
   };
@@ -159,8 +163,20 @@ const Detail = ({ setActive, user }) => {
             color: "white",
           }}
         >
-          <span>{Data?.timestamp.toDate().toDateString()}</span>
-          <h2>{Data?.title}</h2>
+          <span
+            style={{
+              color: "white",
+            }}
+          >
+            {Data?.timestamp.toDate().toDateString()}
+          </span>
+          <h2
+            style={{
+              color: "white",
+            }}
+          >
+            {Data?.title}
+          </h2>
         </div>
       </div>
       <div className="container-fluid pb-4 pt-4 padding Data-single-content">
@@ -178,6 +194,18 @@ const Detail = ({ setActive, user }) => {
                   fileName={Data?.filename}
                 />
               </span>
+              <br />
+              <p className="text-start">
+                <strong>
+                  Is Job Available?{" "}
+                  {Data?.isAvailable
+                    ? "Yes"
+                    : Data?.isAvailable === false
+                    ? "No"
+                    : "Undefined"}
+                </strong>
+              </p>
+
               <p className="text-start">{Data?.description}</p>
               <br />
               <div className="custombox">

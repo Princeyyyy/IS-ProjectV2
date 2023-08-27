@@ -194,7 +194,7 @@ const Auth = ({ setActive, setUser, sign }) => {
                         onChange={handlerole}
                       />
                       <label htmlFor="radioOption" className="form-check-label">
-                        Yes&nbsp;
+                        &nbsp; Yes &nbsp;
                       </label>
                       <input
                         type="radio"
@@ -205,7 +205,7 @@ const Auth = ({ setActive, setUser, sign }) => {
                         onChange={handlerole}
                       />
                       <label htmlFor="radioOption" className="form-check-label">
-                        No
+                        &nbsp; No &nbsp;
                       </label>
                     </div>
                   </div>

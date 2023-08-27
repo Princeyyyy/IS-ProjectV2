@@ -143,7 +143,7 @@ const SkillDevelopmentMaterials = ({ setActive }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <button style={styles.Button}>Go to Page</button>
+                <button style={styles.Button}>Go to Course Page</button>
               </a>
             </div>
           </div>
