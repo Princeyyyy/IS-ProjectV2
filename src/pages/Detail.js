@@ -153,7 +153,12 @@ const Detail = ({ setActive, user }) => {
         }}
       >
         <div className="overlay"></div>
-        <div className="Data-title">
+        <div
+          className="Data-title"
+          style={{
+            color: "white",
+          }}
+        >
           <span>{Data?.timestamp.toDate().toDateString()}</span>
           <h2>{Data?.title}</h2>
         </div>

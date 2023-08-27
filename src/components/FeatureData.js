@@ -13,7 +13,6 @@ const FeatureDatas = ({ Datas, title }) => {
         >
           <div className="row pb-3" style={{ cursor: "pointer" }}>
             <div className="col-lg-6 col-md-8 align-self-center">
-              {/* Adjusted column classes */}
               <img
                 src="/images/image.jpg"
                 alt={item.title}
@@ -24,7 +23,6 @@ const FeatureDatas = ({ Datas, title }) => {
               />
             </div>
             <div className="col-lg-6 col-md-4 padding">
-              {/* Adjusted column classes */}
               <div className="text-start most-popular-font">{item.title}</div>
               <div className="text-start most-popular-font-meta">
                 <strong>Posted on :</strong>{" "}

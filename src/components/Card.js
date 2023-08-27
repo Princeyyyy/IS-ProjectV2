@@ -10,6 +10,9 @@ const Card = ({ title, description, id, likes, comments }) => {
           className="related-img card-img-top"
           src="/images/image.jpg"
           alt={title}
+          style={{
+            borderRadius: "10px",
+          }}
         />
         <div className="related-body card-body p-4">
           <h5 className="title text-start py-2">{title}</h5>

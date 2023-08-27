@@ -18,6 +18,12 @@ import Spinner from "../components/Spinner";
 import { db } from "../firebase";
 
 const Datas = ({ setActive }) => {
+  const spinnerStyle = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  };
+
   const [loading, setLoading] = useState(false);
   const [Datas, setDatas] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,7 +39,12 @@ const Datas = ({ setActive }) => {
   }, []);
 
   if (loading) {
-    return <Spinner />;
+    return (
+      <div className="centered-spinner-container" style={spinnerStyle}>
+        {loading && <Spinner />}
+        {/* Your other content */}
+      </div>
+    );
   }
 
   const getDatasData = async () => {
