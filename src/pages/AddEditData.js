@@ -182,6 +182,8 @@ const AddEditData = ({ user, setActive }) => {
           });
           toast.success("Posting created successfully");
         } catch (err) {
+          toast.success("Error adding job details");
+          setIsDisabled(false);
           console.log(err);
         }
       } else {
@@ -197,6 +199,8 @@ const AddEditData = ({ user, setActive }) => {
           });
           toast.success("Posting updated successfully");
         } catch (err) {
+          toast.success("Error updating job details");
+          setIsDisabled(false);
           console.log(err);
         }
       }
