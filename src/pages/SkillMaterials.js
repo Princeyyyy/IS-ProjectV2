@@ -32,7 +32,7 @@ const infoText = (
     >
       Alison
     </a>
-    . Once you are there click sign upif you don't have an account or Log in if
+    . Once you are there click sign up if you don't have an account or Log in if
     you have one.
   </div>
 );
@@ -138,11 +138,7 @@ const SkillDevelopmentMaterials = ({ setActive }) => {
             <h2>{card.title}</h2>
             <p style={styles.CardContent}>{card.content}</p>
             <div style={styles.ButtonContainer}>
-              <a
-                href={card.buttonUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href={card.url} target="_blank" rel="noopener noreferrer">
                 <button style={styles.Button}>Go to Course Page</button>
               </a>
             </div>
