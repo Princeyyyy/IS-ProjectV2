@@ -19,6 +19,8 @@ import Data from "./pages/Data";
 import Approval from "./pages/Approval";
 import PublisherData from "./pages/PublisherData";
 import SkillDevelopmentMaterials from "./pages/SkillMaterials";
+import UpdateAccount from "./pages/UpdateAccount";
+import AddSkills from "./pages/AddSkills";
 
 function App() {
   const [active, setActive] = useState("home");
@@ -109,6 +111,16 @@ function App() {
         <Route
           path="/author/:author"
           element={<PublisherData setActive={setActive} />}
+        />
+        <Route
+          path="/updateaccount"
+          element={
+            user?.uid ? <UpdateAccount user={user} /> : <Navigate to="/" />
+          }
+        />
+        <Route
+          path="/addskills"
+          element={user?.uid ? <AddSkills user={user} /> : <Navigate to="/" />}
         />
       </Routes>
     </div>

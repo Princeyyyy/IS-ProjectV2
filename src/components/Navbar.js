@@ -184,21 +184,37 @@ const Navbar = ({ active, setActive, user, handleLogout }) => {
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                   {userId ? (
                     <>
-                      <div className="profile-logo">
-                        <img
-                          src="/images/profile.png"
-                          alt="logo"
-                          style={{
-                            width: "30px",
-                            height: "30px",
-                            borderRadius: "50%",
-                            marginTop: "12px",
-                          }}
-                        />
-                      </div>
-                      <p style={{ marginTop: "14px", marginLeft: "10px" }}>
-                        {username}
-                      </p>
+                      <Link
+                        to="/updateaccount"
+                        style={{ textDecoration: "none" }}
+                      >
+                        <div className="profile-logo">
+                          <img
+                            src="/images/profile.png"
+                            alt="logo"
+                            style={{
+                              width: "30px",
+                              height: "30px",
+                              borderRadius: "50%",
+                              marginTop: "12px",
+                            }}
+                          />
+                        </div>
+                      </Link>
+                      {userId && isAdmin ? (
+                        <Link
+                          to="/addskills"
+                          style={{ textDecoration: "none", color: "inherit" }}
+                        >
+                          <p style={{ marginTop: "14px", marginLeft: "10px" }}>
+                            {username}
+                          </p>
+                        </Link>
+                      ) : (
+                        <p style={{ marginTop: "14px", marginLeft: "10px" }}>
+                          {username}
+                        </p>
+                      )}
                       <li className="nav-item nav-link" onClick={handleLogout}>
                         Logout
                       </li>
