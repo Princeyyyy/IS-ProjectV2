@@ -4,27 +4,9 @@ import { collection, getDocs } from "firebase/firestore";
 import { useEffect } from "react";
 
 const Search = ({ handleChange, filters, categories, setCategories, db }) => {
-  const navigate = useNavigate();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const queryParams = new URLSearchParams();
-
-    Object.entries(filters).forEach(([key, value]) => {
-      if (value) {
-        queryParams.append(key, value);
-      }
-    });
-
-    if (queryParams.toString()) {
-      navigate(`/search?${queryParams.toString()}`);
-    } else {
-      navigate("/");
-    }
-  };
-
   const fetchCategories = async () => {
+    console.log(categories);
+
     const dataRef = collection(db, "Jobs");
     const dataSnapshot = await getDocs(dataRef);
     const categoriesData = [];
@@ -50,7 +32,7 @@ const Search = ({ handleChange, filters, categories, setCategories, db }) => {
           Search
         </div>
         <div className="col-lg-9 col-md-6 col-sm-12">
-          <form className="form-inline" onSubmit={handleSubmit}>
+          <form className="form-inline">
             <div className="form-group mx-sm-3 mb-2">
               <input
                 type="text"
@@ -76,22 +58,6 @@ const Search = ({ handleChange, filters, categories, setCategories, db }) => {
                 ))}
               </select>
             </div>
-            <div className="form-group mx-sm-3 mb-2">
-              <input
-                type="text"
-                name="tags"
-                value={filters.tags}
-                className="form-control search-input"
-                placeholder="Search tags"
-                onChange={handleChange}
-              />
-            </div>
-            <button
-              className="btn btn-warning search-btn"
-              style={{ color: "white" }}
-            >
-              <i className="fa fa-search" />
-            </button>
           </form>
         </div>
       </div>

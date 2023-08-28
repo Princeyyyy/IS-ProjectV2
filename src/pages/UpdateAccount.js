@@ -70,7 +70,9 @@ const UpdateAccount = ({ user }) => {
     <div className="container-fluid mb-4">
       <div className="container">
         <div className="col-12 text-center">
-          <div className="text-center heading py-2">{"Add Skill Details"}</div>
+          <div className="text-center heading py-2">
+            {"Update Account Details"}
+          </div>
         </div>
         <div className="row h-100 justify-content-center align-items-center">
           <div className="col-10 col-md-8 col-lg-6">
@@ -107,7 +109,7 @@ const UpdateAccount = ({ user }) => {
               </div>
               <div className="col-12 py-3 text-center">
                 <button
-                  className={`btn btn-sign-in`}
+                  className={`btn btn-sign-up`}
                   type="submit"
                   disabled={isDisabled}
                 >

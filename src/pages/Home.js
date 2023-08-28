@@ -48,7 +48,6 @@ const Home = ({ setActive, user, active }) => {
   const [totalDatas, setTotalDatas] = useState(null);
   const [hide, setHide] = useState(false);
   const queryString = useQuery();
-  //const searchQuery = queryString.get("searchQuery");
   const location = useLocation();
   const [isAdmin, setisAdmin] = useState(false);
   const [searchQuery, setSearchQuery] = useState({
@@ -98,8 +97,6 @@ const Home = ({ setActive, user, active }) => {
     setDatas(docSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
     setLastVisible(docSnapshot.docs[docSnapshot.docs.length - 1]);
   };
-
-  console.log("Jobs", Datas);
 
   const updateState = (docSnapshot) => {
     const isCollectionEmpty = docSnapshot.size === 0;

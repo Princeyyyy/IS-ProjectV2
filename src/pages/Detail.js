@@ -198,11 +198,7 @@ const Detail = ({ setActive, user }) => {
               <p className="text-start">
                 <strong>
                   Is Job Available?{" "}
-                  {Data?.isAvailable
-                    ? "Yes"
-                    : Data?.isAvailable === false
-                    ? "No"
-                    : "Undefined"}
+                  {String(Data?.isAvailable) === "true" ? "Yes" : "No"}
                 </strong>
               </p>
 
