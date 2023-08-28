@@ -120,7 +120,7 @@ function App() {
         />
         <Route
           path="/addskills"
-          element={user?.uid ? <AddSkills user={user} /> : <Navigate to="/" />}
+          element={user?.uid ? <AddSkills /> : <Navigate to="/" />}
         />
       </Routes>
     </div>
